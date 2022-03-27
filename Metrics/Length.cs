@@ -8,21 +8,19 @@ internal class Length: Metric
     {
     }
 
-    internal override void Level1(int rand)
+    internal override int GenerateEquation()
     {
-        CmdHelp.AskQuestion($"Сколько dm (дециметр) в {rand}M (метр)?", rand * 10);
+        var wrontAttempts = 0;
+
+        var dc = Rand.Next(1, 10);
+        wrontAttempts += CmdHelp.AskQuestion($"Сколько dm (дециметр) в {dc}M (метр)?", dc * 10);
+
+        var sm = Rand.Next(1, 10);
+        wrontAttempts += CmdHelp.AskQuestion($"Сколько cm (сантиметр) в {sm}M (метр)?", sm * Dimension);
+
+        var mm = Rand.Next(3, 78);
+        wrontAttempts += CmdHelp.AskQuestion($"Сколько mm (миллиметр) в {mm}cm (сантиметр)?", mm * 10);
+
+        return wrontAttempts;
     }
-
-    internal override void Level2(int rand)
-    {
-        CmdHelp.AskQuestion($"Сколько cm (сантиметр) в {rand}M (метр)?", rand * Dimension);
-
-        var cm = Rand.Next(3, 78);
-        CmdHelp.AskQuestion($"Сколько mm (миллиметр) в {cm}cm (сантиметр)?", cm * 10);
-    }   
-
-    internal virtual void Level3()
-    {
-
-    } 
 }

@@ -35,11 +35,13 @@ Console.Read();
 
 var stopwatch = new Stopwatch();
 stopwatch.Start();
+var wrontAttempts = 0;
 
-new Length(1).RunTest();
-new Volume(1).RunTest();
-new Weight(1).RunTest();
-new Time(1).RunTest();
+wrontAttempts += new Length(1).GenerateEquation();
+wrontAttempts += new Volume(1).GenerateEquation();
+wrontAttempts += new Weight(1).GenerateEquation();
+wrontAttempts += new Temperature(1).GenerateEquation();
+wrontAttempts += new Time(1).GenerateEquation();
 
 stopwatch.Stop();
-Console.WriteLine($"Молодец, это все. время: {stopwatch.Elapsed.ToString(@"m\:ss")}");
+Console.WriteLine($"Молодец, это все. время: {stopwatch.Elapsed.ToString(@"m\:ss")}, количество ошибок: {wrontAttempts}");

@@ -1,6 +1,6 @@
 internal abstract class Metric
 {
-    protected Random Rand = new Random();
+    protected readonly Random Rand = new Random();
 
     internal Metric(string name, long value, int dimension)
     {
@@ -17,17 +17,6 @@ internal abstract class Metric
         return expected == real;
     }
 
-    internal abstract void Level1(int rand);
-    internal abstract void Level2(int rand);
-
-    internal virtual void Level3(string question, int expected)
-    {
-
-    }
-
-    internal void RunTest()
-    {
-        Level1(Rand.Next(1, 5));
-        Level2(Rand.Next(3, 7));
-    }
+    // returns the number of wrong answered attempts
+    internal abstract int GenerateEquation();
 }

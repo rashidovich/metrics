@@ -7,13 +7,16 @@ internal class Weight: Metric
     {
     }
 
-    internal override void Level1(int rand)
+    internal override int GenerateEquation()
     {
-        CmdHelp.AskQuestion($"Сколько gram (грамм) в {rand}Kg (килограмм)?", rand * Dimension);
-    }
+        var wrontAttempts = 0;
 
-    internal override void Level2(int rand)
-    {
-        CmdHelp.AskQuestion($"Сколько Kg (килограмм) в {rand * Dimension}gram (грамм)?", rand);
+        var kg = Rand.Next(1, 5);
+        wrontAttempts += CmdHelp.AskQuestion($"Сколько gram (грамм) в {kg}Kg (килограмм)?", kg * Dimension);
+
+        var grm = Rand.Next(5, 10);
+        wrontAttempts += CmdHelp.AskQuestion($"Сколько Kg (килограмм) в {grm * Dimension}gram (грамм)?", grm);
+
+        return wrontAttempts;
     }
 }

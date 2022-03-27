@@ -13,8 +13,10 @@ internal static class CmdHelp
         return ReadInt();
     }
 
-    internal static void AskQuestion(string question, params int[] expected)
+    internal static int AskQuestion(string question, params int[] expected)
     {
+        int wrongAttempts = 0;
+        
         while(true)
         {
             Console.WriteLine(string.Format(question));
@@ -28,9 +30,12 @@ internal static class CmdHelp
             }
             else
             {
+                ++wrongAttempts;
                 Console.WriteLine("Неверно! Еще раз.");
             }
         }
+
+        return wrongAttempts;
     }    
 
     internal static bool Assert(int real, params int[] expected)

@@ -8,13 +8,16 @@ internal class Volume: Metric
     {
     }
 
-    internal override void Level1(int rand)
+    internal override int GenerateEquation()
     {
-        CmdHelp.AskQuestion($"Сколько ml (миллилитр) в {rand} (литр)?", rand * Dimension);
-    }
+        var wrontAttempts = 0;
 
-    internal override void Level2(int rand)
-    {
-        CmdHelp.AskQuestion($"Сколько L (литр) в {rand * Dimension}ml (миллилитр)?", rand);
+        var l = Rand.Next(1, 5);
+        wrontAttempts += CmdHelp.AskQuestion($"Сколько ml (миллилитр) в {l} (литр)?", l * Dimension);
+
+        var ml = Rand.Next(5, 10);
+        wrontAttempts += CmdHelp.AskQuestion($"Сколько L (литр) в {ml * Dimension}ml (миллилитр)?", ml);
+
+        return wrontAttempts;
     }
 }

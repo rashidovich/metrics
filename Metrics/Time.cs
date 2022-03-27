@@ -9,19 +9,22 @@ internal class Time: Metric
     {
     }
 
-    internal override void Level1(int rand)
+    internal override int GenerateEquation()
     {
-        CmdHelp.AskQuestion($"Сколько sec (секундa) в {rand}m (минутa)?", rand * Dimension);
-    }
+        var wrontAttempts = 0;
 
-    internal override void Level2(int rand)
-    {
-        CmdHelp.AskQuestion($"Сколько часов в {rand} сутках?", rand * 24);
+        var m = Rand.Next(1, 3);
+        wrontAttempts += CmdHelp.AskQuestion($"Сколько sec (секундa) в {m}m (минутa)?", m * Dimension);
 
-        var weeks = Rand.Next(1, 9);
-        CmdHelp.AskQuestion($"Сколько дней в {weeks} неделях?", weeks * 7);
+        var d = Rand.Next(3, 6);
+        wrontAttempts += CmdHelp.AskQuestion($"Сколько часов в {d} сутках?", d * 24);
+
+        var weeks = Rand.Next(6, 10);
+        wrontAttempts += CmdHelp.AskQuestion($"Сколько дней в {weeks} неделях?", weeks * 7);
 
         if(weeks % 2 == 0)
-            CmdHelp.AskQuestion($"Сколько дней в году?", 365, 364);
+            wrontAttempts += CmdHelp.AskQuestion($"Сколько дней в году?", 365, 364);
+
+        return wrontAttempts;
     }
 }
